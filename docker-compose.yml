@@ -1,0 +1,6 @@
+services:
+  boviq_e2.api:
+    image: ${DOCKER_REGISTRY-}boviqe2api
+    build:
+      context: .
+      dockerfile: webapi/src/BovIQ_E2.API/Dockerfile
