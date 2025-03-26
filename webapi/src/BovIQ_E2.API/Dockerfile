@@ -11,11 +11,13 @@ EXPOSE 8081
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
-COPY ["webapi/src/BovIQ_E2.API/BovIQ_E2.API.csproj", "webapi/src/BovIQ_E2.API/"]
-RUN dotnet restore "./webapi/src/BovIQ_E2.API/BovIQ_E2.API.csproj"
+WORKDIR /app
+COPY ["webapi/src/BovIQ_E2.API/BovIQ_E2.API.csproj", "BovIQ_E2.API/"]
+COPY ["webapi/src/Core/BovIQ.Domain/BovIQ.Domain.csproj", "BovIQ.Domain/"]
+COPY ["webapi/src/Core/BovIQ.Persistence/BovIQ.Persistence.csproj", "BovIQ.Persistence/"]
+RUN dotnet restore "./BovIQ_E2.API/BovIQ_E2.API.csproj"
 COPY . .
-WORKDIR "/src/webapi/src/BovIQ_E2.API"
+WORKDIR "/app/webapi/src/BovIQ_E2.API"
 RUN dotnet build "./BovIQ_E2.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
