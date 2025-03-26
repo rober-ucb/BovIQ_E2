@@ -26,7 +26,7 @@ public class HerdController(IHerdService herdService) : ControllerBase
     [ProducesResponseType(typeof(BadRequest), StatusCodes.Status400BadRequest)]
     public async Task<Results<Ok<HerdResponse>, BadRequest>> GetHerdById([FromRoute] int id)
     {
-        var result = await herdService.GetHerdsAsync();
+        var result = await herdService.GetByIdAsync(id);
         return result.IsSuccess
             ? TypedResults.Ok(result.Value)
             : TypedResults.BadRequest();
