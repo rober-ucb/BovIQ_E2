@@ -2,6 +2,7 @@
 using BovIQ.Persistence.Abstractions;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BovIQ.Persistence;
 

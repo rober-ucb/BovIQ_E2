@@ -1,13 +1,14 @@
 ﻿using BovIQ.Domain.Repositories;
+using BovIQ.Persistence.Abstractions;
 using Microsoft.EntityFrameworkCore;
 
 namespace BovIQ.Persistence.Repositories;
 
-public abstract class BaseRepository<TEntity, TKey>(ApplicationDbContext context) : IBaseRepository<TEntity, TKey>
+public abstract class BaseRepository<TEntity, TKey>(IApplicationDbContext context) : IBaseRepository<TEntity, TKey>
     where TEntity : class, new()
     where TKey : struct
 {
-    protected ApplicationDbContext Context = context;
+    protected IApplicationDbContext Context = context;
     public virtual async Task<TEntity> AddAsync(TEntity entity)
     {
         await Context.Set<TEntity>().AddAsync(entity);
