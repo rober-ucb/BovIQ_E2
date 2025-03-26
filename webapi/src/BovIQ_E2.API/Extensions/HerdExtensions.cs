@@ -11,4 +11,6 @@ public static class HerdExtensions
             Name = source.Name,
             OwnerId = source.OwnerId,
         };
+    public static HerdResponse MapToResponse(this Herd source)
+        => new(source.Id, source.Name, source.Cows.Count);
 }
