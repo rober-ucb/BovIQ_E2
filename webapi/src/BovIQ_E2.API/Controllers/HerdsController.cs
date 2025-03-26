@@ -7,7 +7,7 @@ namespace BovIQ_E2.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class HerdController(IHerdService herdService) : ControllerBase
+public class HerdsController(IHerdService herdService) : ControllerBase
 {
     [HttpGet]
     [ProducesResponseType(typeof(List<HerdResponse>), StatusCodes.Status200OK)]

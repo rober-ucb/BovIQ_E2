@@ -14,5 +14,5 @@ public static class HerdExtensions
     public static HerdResponse MapToResponse(this Herd source)
         => new(source.Id, source.Name, source.Cows.Count);
     public static IEnumerable<HerdResponse> MapToResponse(this IEnumerable<Herd> source) 
-        => source.Select(x => x.MapToResponse());
+        => source.Select(MapToResponse);
 }
