@@ -30,6 +30,16 @@ public class HerdService(
         return herd.Id;
     }
 
+    public async Task<Result<HerdResponse>> GetByIdAsync(int id)
+    {
+        Herd? herd = await herdRepository.FindByIdAsync(id);
+        if (herd is null)
+        {
+            return Result.Failure<HerdResponse>(Error.NotFound("Herd.NotFound", $"Herd with id {id} not found"));
+        }
+        return herd.MapToResponse();
+    }
+
     public async Task<Result<IReadOnlyList<HerdResponse>>> GetHerdsAsync()
     {
         var herds = await herdRepository.GetAllAsync();
