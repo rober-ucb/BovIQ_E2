@@ -1,0 +1,21 @@
+services:
+  boviq_e2.api:
+    image: ${DOCKER_REGISTRY-}boviqe2api
+    build:
+      context: .
+      dockerfile: webapi/src/BovIQ_E2.API/Dockerfile
+    container_name: boviq_e2.api
+    depends_on:
+      - boviq_e2.database
+  boviq_e2.database:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=P@ssword123
+    volumes:
+      - boviq_e2:/var/opt/mssql
+    ports:
+      - "1433:1433"
+    container_name: boviq_e2.database
+volumes:
+  boviq_e2:
