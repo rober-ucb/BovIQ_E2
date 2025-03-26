@@ -1,4 +1,5 @@
-﻿using BovIQ_E2.API.DTOs;
+﻿using Azure.Core;
+using BovIQ_E2.API.DTOs;
 using BovIQ_E2.API.Services.Herds;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,18 @@ public class HerdController(IHerdService herdService) : ControllerBase
         var result = await herdService.CreateHerdAsync(request);
         return result.IsSuccess
             ? TypedResults.Created(nameof(Created), result.Value)
+            : TypedResults.BadRequest();
+    }
+
+    [HttpPut("{id:int}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(BadRequest), StatusCodes.Status400BadRequest)]
+    public async Task<Results<Ok, BadRequest>> UpdateHerd(
+        [FromRoute] int id, [FromBody] UpdateHerdRequest request)
+    {
+        var result = await herdService.UpdateHerdAsync(id, request);
+        return result.IsSuccess
+            ? TypedResults.Ok()
             : TypedResults.BadRequest();
     }
 }

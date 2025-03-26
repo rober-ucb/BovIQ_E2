@@ -24,13 +24,18 @@ public static class DependencyInjection
         {
             options.UseSeeding((context, _) =>
             {
-                context.Set<ApplicationUser>().Add(new ApplicationUser
+                ApplicationUser user = new ApplicationUser
                 {
-                    FirstName = "Rober Leon",
+                    FirstName = "Robert Leon",
                     LastName = "Guerrero Mendoza",
-                    Email = "rober@email.com",
-                    UserName = "rober@email.com"
-                });
+                    Email = "robert@email.com",
+                    UserName = "robert@email.com"
+                };
+                if (context.Set<ApplicationUser>().Any(x => x.Email == user.Email))
+                {
+                    return;
+                }
+                context.Set<ApplicationUser>().Add(user);
                 context.SaveChanges();
             });
         });

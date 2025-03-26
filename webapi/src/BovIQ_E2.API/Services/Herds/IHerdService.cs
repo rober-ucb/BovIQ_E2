@@ -7,4 +7,5 @@ public interface IHerdService
 {
     Task<Result<IReadOnlyList<HerdResponse>>> GetHerdsAsync();
     Task<Result<int>> CreateHerdAsync(CreateHerdRequest request);
+    Task<Result> UpdateHerdAsync(int id, UpdateHerdRequest request);
 }
