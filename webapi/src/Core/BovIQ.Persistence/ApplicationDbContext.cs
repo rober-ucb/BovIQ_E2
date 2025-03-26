@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace BovIQ.Persistence;
 
 public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) 
-    : IdentityDbContext<ApplicationUser>(options), IApplicationDbContext
+    : IdentityDbContext<ApplicationUser>(options), IApplicationDbContext, IUnitOfWork
 {
     public DbSet<Cow> Cows { get; set; }
     public DbSet<Herd> Herds { get; set; }
