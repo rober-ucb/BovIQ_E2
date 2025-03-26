@@ -1,4 +1,6 @@
-﻿using BovIQ.Persistence.Abstractions;
+﻿using BovIQ.Domain.Repositories;
+using BovIQ.Persistence.Abstractions;
+using BovIQ.Persistence.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,6 +13,7 @@ public static class DependencyInjection
     {
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
         services.AddScoped<IUnitOfWork>(provider => provider.GetRequiredService<ApplicationDbContext>());
+        services.AddScoped<IHerdRepository, HerdRepository>();
         return services;
     }
     public static IServiceCollection AddDatabaseProvider(

@@ -14,6 +14,8 @@ builder.Services
     .AddDatabaseProvider(builder.Configuration)
     .AddRepositories();
 
+builder.Services.AddApplicationServices();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

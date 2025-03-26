@@ -10,4 +10,5 @@ public interface IApplicationDbContext
     DbSet<Herd> Herds {  get; set; }
     DbSet<Breed> Breeds { get; set; }
     DbSet<MilkSession> MilkSessions { get; set; }
+    DbSet<TEntity> Set<TEntity>() where TEntity : class;
 }
