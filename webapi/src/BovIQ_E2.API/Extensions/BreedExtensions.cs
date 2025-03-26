@@ -14,5 +14,5 @@ internal static class BreedExtensions
     internal static BreedResponse MapToResponse(this Breed source)
         => new(source.Id, source.Name, source.Description ?? string.Empty);
     internal static IEnumerable<BreedResponse> MapToResponse(this IEnumerable<Breed> source)
-        => source.Select(x => x.MapToResponse());
+        => source.Select(MapToResponse);
 }
