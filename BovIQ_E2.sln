@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{0BE96B25-0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BovIQ.Persistence", "webapi\src\Core\BovIQ.Persistence\BovIQ.Persistence.csproj", "{09A1B3E4-9500-4FFE-9E45-008A2671E304}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BovIQ.Domain", "webapi\src\Core\BovIQ.Domain\BovIQ.Domain.csproj", "{6AB10F49-69E0-400B-82EE-244E71033148}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{09A1B3E4-9500-4FFE-9E45-008A2671E304}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09A1B3E4-9500-4FFE-9E45-008A2671E304}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09A1B3E4-9500-4FFE-9E45-008A2671E304}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AB10F49-69E0-400B-82EE-244E71033148}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AB10F49-69E0-400B-82EE-244E71033148}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AB10F49-69E0-400B-82EE-244E71033148}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AB10F49-69E0-400B-82EE-244E71033148}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +48,7 @@ Global
 		{D364C4B0-4CDB-42C9-A75B-BE7D8EC36994} = {208CD65F-F6DA-4B56-A7CD-059BC5508362}
 		{0BE96B25-0CAE-4F54-9666-56B31F26AA5E} = {208CD65F-F6DA-4B56-A7CD-059BC5508362}
 		{09A1B3E4-9500-4FFE-9E45-008A2671E304} = {0BE96B25-0CAE-4F54-9666-56B31F26AA5E}
+		{6AB10F49-69E0-400B-82EE-244E71033148} = {0BE96B25-0CAE-4F54-9666-56B31F26AA5E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {20F5FB64-6FC3-41A1-8641-2F79E75F22AE}
