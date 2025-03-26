@@ -1,5 +1,7 @@
+using BovIQ.Domain.Entities;
 using BovIQ.Persistence;
 using BovIQ_E2.API.Extensions;
+using Microsoft.AspNetCore.Identity;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +17,9 @@ builder.Services
     .AddRepositories();
 
 builder.Services.AddApplicationServices();
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 var app = builder.Build();
 

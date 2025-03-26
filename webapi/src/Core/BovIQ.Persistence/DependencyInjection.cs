@@ -1,4 +1,5 @@
-﻿using BovIQ.Domain.Repositories;
+﻿using BovIQ.Domain.Entities;
+using BovIQ.Domain.Repositories;
 using BovIQ.Persistence.Abstractions;
 using BovIQ.Persistence.Repositories;
 using Microsoft.Extensions.Configuration;
@@ -18,6 +19,19 @@ public static class DependencyInjection
     }
     public static IServiceCollection AddDatabaseProvider(
         this IServiceCollection services,
-        IConfiguration configuration) 
-        => services.AddSqlServer<ApplicationDbContext>(configuration.GetConnectionString(_sectionName));
+        IConfiguration configuration)
+        => services.AddSqlServer<ApplicationDbContext>(configuration.GetConnectionString(_sectionName), optionsAction: options =>
+        {
+            options.UseSeeding((context, _) =>
+            {
+                context.Set<ApplicationUser>().Add(new ApplicationUser
+                {
+                    FirstName = "Rober Leon",
+                    LastName = "Guerrero Mendoza",
+                    Email = "rober@email.com",
+                    UserName = "rober@email.com"
+                });
+                context.SaveChanges();
+            });
+        });
 }

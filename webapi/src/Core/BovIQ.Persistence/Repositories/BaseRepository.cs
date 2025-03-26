@@ -9,7 +9,7 @@ public abstract class BaseRepository<TEntity, TKey>(IApplicationDbContext contex
     where TKey : struct
 {
     protected IApplicationDbContext Context = context;
-    public virtual async Task<TEntity> AddAsync(TEntity entity)
+    public virtual async Task<TEntity> InsertAsync(TEntity entity)
     {
         await Context.Set<TEntity>().AddAsync(entity);
         return entity;
