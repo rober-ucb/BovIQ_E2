@@ -15,7 +15,7 @@ public abstract class BaseRepository<TEntity, TKey>(IApplicationDbContext contex
         return entity;
     }
 
-    public virtual void DeleteAsync(TEntity entity) 
+    public virtual void Delete(TEntity entity) 
         => Context.Set<TEntity>().Remove(entity);
 
     public virtual async Task<TEntity?> FindByIdAsync(TKey id) 

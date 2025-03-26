@@ -8,5 +8,5 @@ public interface IBaseRepository<TEntity, TKey>
     Task<TEntity> InsertAsync(TEntity entity);
     Task<List<TEntity>> GetAllAsync();
     void Update(TEntity entity);
-    void DeleteAsync(TEntity id);
+    void Delete(TEntity id);
 }

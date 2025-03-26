@@ -13,7 +13,7 @@ public class HerdService(
     UserManager<ApplicationUser> userManager,
     IUnitOfWork unitOfWork) : IHerdService
 {
-    public async Task<Result<int>> CreateHerdAsync(CreateHerdRequest request)
+    public async Task<Result<int>> CreateAsync(CreateHerdRequest request)
     {
         if (await herdRepository.HerdExistsAsync(request.Name))
         {
@@ -40,15 +40,15 @@ public class HerdService(
         return herd.MapToResponse();
     }
 
-    public async Task<Result<IReadOnlyList<HerdResponse>>> GetHerdsAsync()
+    public async Task<Result<IReadOnlyList<HerdResponse>>> GetAllAsync()
     {
-        var herds = await herdRepository.GetAllAsync();
-        return herds.Select(herd => new HerdResponse(herd.Id, herd.Name, herd.Cows.Count))
-                    .ToList()
-                    .AsReadOnly();
+        return (await herdRepository.GetAllAsync())
+            .MapToResponse()
+            .ToList()
+            .AsReadOnly();
     }
 
-    public async Task<Result> UpdateHerdAsync(int id, UpdateHerdRequest request)
+    public async Task<Result> UpdateAsync(int id, UpdateHerdRequest request)
     {
         Herd? herd = await herdRepository.FindByIdAsync(id);
         if (herd is null)
