@@ -5,8 +5,8 @@ namespace BovIQ_E2.API.Services.Herds;
 
 public interface IHerdService
 {
-    Task<Result<IReadOnlyList<HerdResponse>>> GetHerdsAsync();
-    Task<Result<int>> CreateHerdAsync(CreateHerdRequest request);
-    Task<Result> UpdateHerdAsync(int id, UpdateHerdRequest request);
+    Task<Result<IReadOnlyList<HerdResponse>>> GetAllAsync();
+    Task<Result<int>> CreateAsync(CreateHerdRequest request);
+    Task<Result> UpdateAsync(int id, UpdateHerdRequest request);
     Task<Result<HerdResponse>> GetByIdAsync(int id);
 }
