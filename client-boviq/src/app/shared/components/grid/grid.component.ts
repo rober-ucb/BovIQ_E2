@@ -1,4 +1,10 @@
-import { Component, input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -7,6 +13,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-grid',
@@ -23,10 +30,12 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
   templateUrl: './grid.component.html',
   styleUrl: './grid.component.css',
 })
-export class GridComponent<T> implements OnInit, OnChanges  {
+export class GridComponent<T> implements OnInit, OnChanges {
   constructor(private readonly dialog: MatDialog) {}
   editDialog = input<any>(); // Component to use for edit dialog
   deleteDialog = input<any>(); // Component to use for delete dialog
+  // New input for a refresh method
+  refreshData = input<() => Observable<T[]>>();
   ngOnInit(): void {
     this.dataSource.data = this.data();
   }
@@ -37,7 +46,14 @@ export class GridComponent<T> implements OnInit, OnChanges  {
   edit(element: T) {
     if (this.editDialog()) {
       this.dialog.open(this.editDialog(), {
-        data: element,
+        data: {
+          element: element,
+        },
+      });
+      // refresh the data when the dialog is closed
+      this.dialog.afterAllClosed.subscribe((result: any) => {
+        console.log('Dialog closed', result);
+        this.updateDataSource();
       });
     }
   }
@@ -57,6 +73,5 @@ export class GridComponent<T> implements OnInit, OnChanges  {
 
   private updateDataSource(): void {
     this.dataSource.data = this.data();
-    console.log('Updated dataSource:', this.dataSource.data);
   }
 }
