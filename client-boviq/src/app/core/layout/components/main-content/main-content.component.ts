@@ -7,6 +7,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-main-content',
@@ -19,7 +20,8 @@ import { MatCardModule } from '@angular/material/card';
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    RouterOutlet
   ]
 })
 export class MainContentComponent {

@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { MainContentComponent } from "../main-content/main-content.component";
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -22,11 +23,12 @@ import { MainContentComponent } from "../main-content/main-content.component";
     MatListModule,
     MatIconModule,
     AsyncPipe,
+    RouterOutlet,
     MainContentComponent
 ]
 })
 export class NavigationComponent {
-  private breakpointObserver = inject(BreakpointObserver);
+  private readonly breakpointObserver = inject(BreakpointObserver);
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(

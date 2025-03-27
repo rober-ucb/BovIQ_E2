@@ -1,0 +1,14 @@
+<!--I want a form with a dialog-->
+<form (ngSubmit)="$submit.next()" [formGroup]="form">
+  <h2 mat-dialog-title>Register a Herd</h2>
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Input</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button type="submit" [disabled]="form.invalid">Save</button>
+  </mat-dialog-actions>
+</form>
