@@ -151,7 +151,7 @@ namespace BovIQ.Persistence.Migrations
                     b.Property<DateTime>("FirstCalvingDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("HerdId")
+                    b.Property<int?>("HerdId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -178,20 +178,18 @@ namespace BovIQ.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("OwnerId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OwnerId");
+                    b.HasIndex("ApplicationUserId");
 
-                    b.ToTable("Herd", (string)null);
+                    b.ToTable("Herds");
                 });
 
             modelBuilder.Entity("BovIQ.Domain.Entities.MilkSession", b =>
@@ -366,26 +364,18 @@ namespace BovIQ.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("BovIQ.Domain.Entities.Herd", "Herd")
+                    b.HasOne("BovIQ.Domain.Entities.Herd", null)
                         .WithMany("Cows")
-                        .HasForeignKey("HerdId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("HerdId");
 
                     b.Navigation("Breed");
-
-                    b.Navigation("Herd");
                 });
 
             modelBuilder.Entity("BovIQ.Domain.Entities.Herd", b =>
                 {
-                    b.HasOne("BovIQ.Domain.Entities.ApplicationUser", "Owner")
+                    b.HasOne("BovIQ.Domain.Entities.ApplicationUser", null)
                         .WithMany("Herds")
-                        .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Owner");
+                        .HasForeignKey("ApplicationUserId");
                 });
 
             modelBuilder.Entity("BovIQ.Domain.Entities.MilkSession", b =>

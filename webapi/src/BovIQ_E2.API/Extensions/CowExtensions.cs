@@ -9,20 +9,14 @@ internal static class CowExtensions
         => new()
         {
             BreedId = source.BreedId,
-            HerdId = source.HerdId,
             Name = source.Name,
             EarTag = source.EarTag,
-            FirstCalvingDate = source.FirstCalvingDate,
-            DateOfBirth = source.DateOfBirth
         };
     internal static Cow MapToEntity(this UpdateCowRequest source, Cow target)
     {
         target.BreedId = source.BreedId;
-        target.HerdId = source.HerdId;
         target.Name = source.Name;
         target.EarTag = source.EarTag;
-        target.FirstCalvingDate = source.FirstCalvingDate;
-        target.DateOfBirth = source.DateOfBirth;
         return target;
     }
     internal static CowResponse MapToResponse(this Cow source)
@@ -30,8 +24,6 @@ internal static class CowExtensions
             source.Id,
             source.Name,
             source.EarTag,
-            source.FirstCalvingDate,
-            source.DateOfBirth,
             source.Breed?.MapToResponse());
 
     internal static IEnumerable<CowResponse> MapToResponse(this IEnumerable<Cow> source)
