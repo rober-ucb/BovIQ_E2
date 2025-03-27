@@ -17,6 +17,7 @@ public static class DependencyInjection
         services.AddScoped<IHerdRepository, HerdRepository>();
         services.AddScoped<IBreedRepository, BreedRepository>();
         services.AddScoped<ICowRepository, CowRepository>();
+        services.AddScoped<IMilkSessionRepository, MilkSessionRepository>();
         return services;
     }
     public static IServiceCollection AddDatabaseProvider(
