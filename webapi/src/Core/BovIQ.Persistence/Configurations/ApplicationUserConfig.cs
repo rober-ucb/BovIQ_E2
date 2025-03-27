@@ -20,13 +20,13 @@ internal sealed class ApplicationUserConfig : IEntityTypeConfiguration<Applicati
             .HasDefaultValueSql("GETDATE()")
             .ValueGeneratedOnAddOrUpdate();
 
-        ConfigureRelationships(builder);
+        //ConfigureRelationships(builder);
     }
-    private static void ConfigureRelationships(EntityTypeBuilder<ApplicationUser> builder)
-    {
-        builder.HasMany(x => x.Herds)
-            .WithOne(x => x.Owner)
-            .HasForeignKey(x => x.OwnerId)
-            .OnDelete(DeleteBehavior.Cascade);
-    }
+    //private static void ConfigureRelationships(EntityTypeBuilder<ApplicationUser> builder)
+    //{
+    //    builder.HasMany(x => x.Herds)
+    //        .WithOne(x => x.Owner)
+    //        .HasForeignKey(x => x.OwnerId)
+    //        .OnDelete(DeleteBehavior.Cascade);
+    //}
 }

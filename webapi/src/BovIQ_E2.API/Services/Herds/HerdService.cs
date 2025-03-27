@@ -20,10 +20,6 @@ public class HerdService(
             return Result.Failure<int>(Error.Validation("Herd.Duplicated", $"Name {request.Name} is already taken"));
         }
 
-        if (await userManager.FindByIdAsync(request.OwnerId) is null)
-        {
-            return Result.Failure<int>(Error.Validation("User.NotFound", "User not found"));
-        }
         Herd herd = request.MapToEntity();
         await herdRepository.InsertAsync(herd);
         await unitOfWork.SaveChangesAsync();
@@ -55,16 +51,11 @@ public class HerdService(
         {
             return Result.Failure(Error.NotFound("Herd.NotFound", $"Herd with id {id} not found"));
         }
-        if (await userManager.FindByIdAsync(request.OwnerId) is null)
-        {
-            return Result.Failure<int>(Error.Validation("User.NotFound", "User not found"));
-        }
         if (await herdRepository.HerdExistsAsync(request.Name, id))
         {
             return Result.Failure<int>(Error.Validation("Herd.Duplicated", $"Name {request.Name} is already taken"));
         }
         herd.Name = request.Name;
-        herd.OwnerId = request.OwnerId;
         await unitOfWork.SaveChangesAsync();
         return Result.Success();
     }

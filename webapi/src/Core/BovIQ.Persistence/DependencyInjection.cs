@@ -27,7 +27,7 @@ public static class DependencyInjection
         {
             options.UseSeeding((context, _) =>
             {
-                ApplicationUser user = new ApplicationUser
+                ApplicationUser user = new()
                 {
                     FirstName = "Robert Leon",
                     LastName = "Guerrero Mendoza",
