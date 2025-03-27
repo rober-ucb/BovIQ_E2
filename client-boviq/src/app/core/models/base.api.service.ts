@@ -8,7 +8,7 @@ export class BaseApiService {
     public readonly httpClient: HttpClient = inject(HttpClient);
 
     constructor(protected baseApi: string = '') {
-      this.baseUrl = environment.API_BASE_PATH + baseApi;
+      this.baseUrl = environment.API_URL + baseApi;
     }
     
     public get<T>(url: string, options?: object): Observable<T> {
