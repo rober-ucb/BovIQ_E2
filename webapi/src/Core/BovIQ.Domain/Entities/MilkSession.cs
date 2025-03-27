@@ -1,4 +1,6 @@
-﻿namespace BovIQ.Domain.Entities;
+﻿using System.Text.Json.Serialization;
+
+namespace BovIQ.Domain.Entities;
 
 public class MilkSession
 {
@@ -9,6 +11,8 @@ public class MilkSession
     public double MilkVolume { get; set; }
     public string? Notes { get; set; }
 }
+
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum MilkingTime
 {
     Morning,
