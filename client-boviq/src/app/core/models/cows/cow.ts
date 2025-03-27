@@ -1,10 +1,11 @@
+import { Breed } from "../breeds/breed";
+
 export interface Cattle {
   id: number;
   breedI: string;
   name: string;
   earTag: string;
-  firstCalvingDate: Date;
-  dateOfBirth: Date;
+  Breed: Breed;
 }
 
 export interface CreateCowRequest {

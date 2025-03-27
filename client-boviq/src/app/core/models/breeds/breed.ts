@@ -1,4 +1,4 @@
-export interface BreedResponse {
+export interface Breed {
   id: number;
   name: string;
   description: string;

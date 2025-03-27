@@ -7,18 +7,19 @@ import {
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { BreedResponse } from '@app/core/models/breeds/breed';
+import { Breed } from '@app/core/models/breeds/breed';
 import { GridComponent } from '@app/shared/components/grid/grid.component';
 import { BreedService } from '../../services/breed.service';
 import { MatDialog } from '@angular/material/dialog';
 import { BreedFormDialogComponent } from '../../components/breed-form-dialog/breed-form-dialog.component';
 import { AutoDestroyService } from '@app/core/common/auto-destroy.service';
 import { takeUntil } from 'rxjs';
+import { BreedListComponent } from "../../components/breed-list/breed-list.component";
 
 @Component({
   selector: 'app-breed',
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, GridComponent],
+  imports: [MatToolbarModule, MatButtonModule, GridComponent, BreedListComponent],
   providers: [AutoDestroyService],
   templateUrl: './breed.component.html',
   styleUrl: './breed.component.css',
@@ -30,7 +31,7 @@ export class BreedComponent implements OnInit {
   ) {}
 
   displayedColumns: string[] = ['id', 'name', 'description', 'options'];
-  $dataSource: WritableSignal<BreedResponse[]> = signal([]);
+  $dataSource: WritableSignal<Breed[]> = signal([]);
   formDialog = BreedFormDialogComponent;
   readonly dialog = inject(MatDialog);
 
@@ -48,7 +49,7 @@ export class BreedComponent implements OnInit {
     this.breedService
       .getAll()
       .pipe(takeUntil(this.destroy$))
-      .subscribe((data: BreedResponse[]) => {
+      .subscribe((data: Breed[]) => {
         this.$dataSource.set(data);
         console.log(data);
       });

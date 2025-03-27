@@ -19,7 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { BreedService } from '@app/modules/breeds/services/breed.service';
-import { BreedResponse } from '@app/core/models/breeds/breed';
+import { Breed } from '@app/core/models/breeds/breed';
 
 @Component({
   selector: 'app-cattle-form',
@@ -41,7 +41,7 @@ export class CattleFormComponent {
   cattleForm!: FormGroup;
   mode: 'add' | 'edit';
   // maxDate: Date;
-  breeds: WritableSignal<BreedResponse[]> = signal([]);
+  breeds: WritableSignal<Breed[]> = signal([]);
   constructor(
     private fb: FormBuilder,
     private cattleService: CattleService,

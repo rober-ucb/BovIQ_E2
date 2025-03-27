@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseApiService } from '@app/core/models/base.api.service';
-import { BreedResponse, CreateBreedRequest, UpdateBreedRequest } from '@app/core/models/breeds/breed';
+import { Breed, CreateBreedRequest, UpdateBreedRequest } from '@app/core/models/breeds/breed';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class BreedService extends BaseApiService {
     super('/Breeds');
   }
 
-  public getAll(): Observable<BreedResponse[]> {
+  public getAll(): Observable<Breed[]> {
     return super.get(``);
   }
   public add(request: CreateBreedRequest): Observable<number> {
@@ -23,7 +23,7 @@ export class BreedService extends BaseApiService {
   public deleteB(id: number): Observable<number> {
     return super.delete(`/${id}`);
   }
-  public getById(id: number): Observable<BreedResponse> {
+  public getById(id: number): Observable<Breed> {
     return super.get(`/${id}`);
   }
 }

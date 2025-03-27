@@ -1,15 +1,1 @@
-<header>
-  <mat-toolbar color="primary">
-    <span>Breeds</span>
-  </mat-toolbar>
-  <div class="demo-button-container">
-    <button mat-raised-button class="demo-button" (click)="register()">
-      Register
-    </button>
-  </div>
-</header>
-<app-grid
-  [displayedColumns]="displayedColumns"
-  [data]="$dataSource()"
-  [editDialog]="formDialog"
-/>
+<app-breed-list />
