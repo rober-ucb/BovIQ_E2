@@ -32,8 +32,7 @@ internal static class CowExtensions
             source.EarTag,
             source.FirstCalvingDate,
             source.DateOfBirth,
-            source.Breed.MapToResponse(),
-            []);
+            source.Breed?.MapToResponse());
 
     internal static IEnumerable<CowResponse> MapToResponse(this IEnumerable<Cow> source)
         => source.Select(MapToResponse);
