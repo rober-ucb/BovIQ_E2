@@ -9,20 +9,20 @@ internal sealed class HerdConfig : IEntityTypeConfiguration<Herd>
 {
     public void Configure(EntityTypeBuilder<Herd> builder)
     {
-        builder.ToTable(TableName.Herd);
+        //builder.ToTable(TableName.Herd);
 
-        builder.HasKey(x => x.Id);
+        //builder.HasKey(x => x.Id);
 
-        builder.Property(x => x.Name)
-            .HasMaxLength(50);
+        //builder.Property(x => x.Name)
+        //    .HasMaxLength(50);
 
-        ConfigureRelationships(builder);
+        //ConfigureRelationships(builder);
     }
-    private static void ConfigureRelationships(EntityTypeBuilder<Herd> builder)
-    {
-        builder.HasMany(x => x.Cows)
-            .WithOne(x => x.Herd)
-            .HasForeignKey(x => x.HerdId)
-            .OnDelete(DeleteBehavior.Restrict);
-    }
+    //private static void ConfigureRelationships(EntityTypeBuilder<Herd> builder)
+    //{
+    //    builder.HasMany(x => x.Cows)
+    //        .WithOne(x => x.Herd)
+    //        .HasForeignKey(x => x.HerdId)
+    //        .OnDelete(DeleteBehavior.Restrict);
+    //}
 }

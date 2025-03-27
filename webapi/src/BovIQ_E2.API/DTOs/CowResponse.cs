@@ -7,8 +7,6 @@ public sealed record CowResponse(
     int Id,
     string? Name,
     string EarTag,
-    DateTime FirstCalvingDate,
-    DateTime DateOfBirth,
     BreedResponse? Breed)
 {
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

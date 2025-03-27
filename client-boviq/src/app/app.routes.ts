@@ -1,21 +1,28 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from './core/layout/layout.component';
+import { CowComponent } from './modules/cows/pages/cow/cow.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    children:[
+    children: [
       {
-        title: "Herds",
-        path: "herds",
-        loadChildren: () => import('./modules/herds/herd.routes').then(m => m.HERD_ROUTES)
+        title: 'Herds',
+        path: 'herds',
+        loadChildren: () =>
+          import('./modules/herds/herd.routes').then((m) => m.HERD_ROUTES),
       },
       {
-        title: "Breeds",
-        path: "breeds",
-        loadChildren: () => import('./modules/breeds/breed.routes').then(m => m.BREED_ROUTES)
-      }
-    ]
+        title: 'Breeds',
+        path: 'breeds',
+        loadChildren: () =>
+          import('./modules/breeds/breed.routes').then((m) => m.BREED_ROUTES),
+      },
+      {
+        path: 'cows',
+        component: CowComponent,
+      },
+    ],
   },
 ];
