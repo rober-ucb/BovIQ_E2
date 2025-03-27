@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { MainContentComponent } from "../main-content/main-content.component";
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -23,8 +23,8 @@ import { RouterOutlet } from '@angular/router';
     MatListModule,
     MatIconModule,
     AsyncPipe,
-    RouterOutlet,
-    MainContentComponent
+    MainContentComponent,
+    RouterLink,
 ]
 })
 export class NavigationComponent {
