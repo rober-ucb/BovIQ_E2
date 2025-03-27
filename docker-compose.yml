@@ -17,5 +17,21 @@ services:
     ports:
       - "1433:1433"
     container_name: boviq_e2.database
+
+  angular.dev.server:
+    build:
+      context: ./client-boviq
+      dockerfile: Dockerfile
+    ports:
+      - "4205:4200"
+    depends_on:
+      - boviq_e2.api
+    volumes:
+      - ./client-boviq:/app
+      - /app/node_modules
+    command: npm start
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
 volumes:
   boviq_e2:
